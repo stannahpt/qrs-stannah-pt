@@ -1,0 +1,21 @@
+
+{
+  "id": "/qrs-stannah-pt/",
+  "name": "QR's Stannah PT",
+  "short_name": "QR's Stannah",
+  "description": "Acesso rápido às ferramentas de trabalho Stannah PT",
+  "start_url": "/qrs-stannah-pt/",
+  "scope": "/qrs-stannah-pt/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef2f6",
+  "theme_color": "#173653",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
