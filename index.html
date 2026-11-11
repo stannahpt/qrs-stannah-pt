@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173653">
+<title>QR's Stannah PT</title>
+<style>
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#eef2f6;
+  color:#173653;
+}
+header {
+  background:#173653;
+  color:white;
+  padding:25px 18px;
+  text-align:center;
+}
+header h1 { margin:0; font-size:25px; }
+header p { margin:8px 0 0; color:#cbd9e6; }
+main { max-width:520px; margin:auto; padding:20px; }
+h2 { font-size:21px; margin:12px 0 18px; }
+.menu {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+button {
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:19px;
+  background:white;
+  color:#173653;
+  font-size:17px;
+  font-weight:bold;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:0 3px 12px #17365312;
+}
+button:active { transform:scale(.98); }
+.arrow { float:right; color:#66829c; }
+.back {
+  background:#dce6ef;
+  padding:12px 16px;
+  margin-bottom:20px;
+  font-size:14px;
+}
+.item {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.icon { font-size:25px; }
+.coming {
+  text-align:center;
+  padding:45px 15px;
+  background:white;
+  border-radius:15px;
+}
+.coming div { font-size:45px; }
+footer {
+  text-align:center;
+  color:#8090a0;
+  font-size:12px;
+  padding:25px;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>QR's Stannah PT</h1>
+  <p>WORK HUB · Acesso rápido</p>
+</header>
+
+<main>
+  <div id="app"></div>
+</main>
+
+<footer>Stannah PT · WORK HUB</footer>
+
+<script>
+const sections = {
+  "EDE's": [
+    ["600","https://forms.monday.com/forms/cfd34aceb60ab1a6a0251b3dda46ea56?r=use1&s=qr"],
+    ["260","https://forms.monday.com/forms/054c1662605f082e96b8a37c9372bac9?r=use1&s=qr"],
+    ["158","https://forms.monday.com/forms/ec03982decf0a5a36a3fc11376e79015?r=use1&s=qr"],
+    ["320","https://forms.monday.com/forms/5e70e245a9abf37997d5d46a508490dc?r=use1&s=qr"],
+    ["Curved outdoor","https://forms.monday.com/forms/66b235d5846dd03cba5af371dbb1d0c7?r=use1&s=qr"]
+  ],
+  "UPlifts": [
+    ["Pedidos de garantia","https://forms.monday.com/forms/81cef5650377776c1eaaee351abf3949?r=use1"],
+    ["Comissionamento","https://forms.monday.com/forms/45cb5b7baab059e95473f05c07c9cbd4?r=use1&s=qr"],
+    ["Final Safety Checks","https://forms.monday.com/forms/643436a4402d7aa2a774c5e48ebb621d?r=use1&s=qr"]
+  ]
+};
+
+const app = document.getElementById("app");
+
+function home() {
+  app.innerHTML = `
+    <h2>Menu principal</h2>
+    <div class="menu">
+      <button onclick="showSection('EDE\'s')">
+        <span class="item"><span class="icon">📋</span>EDE's</span>
+        <span class="arrow">›</span>
+      </button>
+      <button onclick="showSection('UPlifts')">
+        <span class="item"><span class="icon">🛠️</span>UPlifts</span>
+        <span class="arrow">›</span>
+      </button>
+      <button onclick="showSection('Plataformas')">
+        <span class="item"><span class="icon">💻</span>Plataformas</span>
+        <span class="arrow">›</span>
+      </button>
+    </div>`;
+}
+
+function showSection(name) {
+  if (name === "Plataformas") {
+    app.innerHTML = `
+      <button class="back" onclick="home()">← Voltar ao início</button>
+      <h2>Plataformas</h2>
+      <div class="coming">
+        <div>🚧</div>
+        <h3>Disponível brevemente!</h3>
+        <p>Estamos a preparar esta secção.</p>
+      </div>`;
+    return;
+  }
+
+  const items = sections[name];
+  app.innerHTML = `
+    <button class="back" onclick="home()">← Menu principal</button>
+    <h2>${name}</h2>
+    <div class="menu">
+      ${items.map(item => `
+        <button onclick="openLink('${item[1]}')">
+          <span class="item">
+            <span class="icon">📄</span>${item[0]}
+            <span class="arrow">↗</span>
+          </span>
+        </button>
+      `).join("")}
+    </div>`;
+}
+
+function openLink(url) {
+  window.open(url, "_blank");
+}
+
+home();
+</script>
+</body>
+</html>
