@@ -158,7 +158,7 @@
 </main>
 
 <footer>
-  Stannah PT · Dep. Tecnico (v.1.3)
+  Stannah PT · Dep. Tecnico (v.1.4)
 </footer>
 
 <script>
@@ -304,13 +304,27 @@ function showSection(name) {
 }
 
 function openLink(url) {
-    const link = document.createElement("a");
-    link.href = url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid && url.startsWith("https://")) {
+
+        const intentUrl =
+            "intent://" + url.substring(8) +
+            "#Intent;scheme=https;" +
+            "package=com.android.chrome;" +
+            "S.browser_fallback_url=" +
+            encodeURIComponent(url) +
+            ";end";
+
+        window.location.href = intentUrl;
+
+    } else {
+
+        window.location.href = url;
+
+    }
+
 }
 
 // Regresso ao menu principal com o botão voltar do Android
