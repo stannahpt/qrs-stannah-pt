@@ -150,7 +150,7 @@
 
 <header>
   <h1>QR's Stannah PT</h1>
-  <p>FORMS · Acesso rápido</p>
+  <p>WORK HUB · Acesso rápido</p>
 </header>
 
 <main>
@@ -158,7 +158,7 @@
 </main>
 
 <footer>
-  Stannah PT · Dep. Tecnico
+  Stannah PT · WORK HUB
 </footer>
 
 <script>
@@ -304,8 +304,13 @@ function showSection(name) {
 }
 
 function openLink(url) {
-//  window.location.href = url;
-	window.open(url, "_blank", "noopener ,noreferrer");
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 }
 
 // Regresso ao menu principal com o botão voltar do Android
